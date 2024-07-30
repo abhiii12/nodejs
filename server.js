@@ -60,8 +60,13 @@ console.log(jsonStringified); // Output: {"name": "Alice", "age":25}
 const express = require('express')
 const app = express();
 const db = require('./db')
+
+require('dotenv').config();
+
 const bodyparser=require('body-parser');
 app.use(bodyparser.json());
+
+const PORT = process.env.PORT || 3000
 
 const Person=require('./Models/Person');
 const menuItem=require('./Models/menuItem');
@@ -78,6 +83,6 @@ const menuItemroute= require('./Routes/menuItemroute')
 app.use('/person',personroutes)
 app.use('/menuItem',menuItemroute)
 
-app.listen(300,()=>{
+app.listen(PORT,()=>{
     console.log("server is running on port 3000")
 })
